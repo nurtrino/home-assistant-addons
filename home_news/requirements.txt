@@ -1,0 +1,4 @@
+anthropic>=0.70
+aiohttp>=3.9
+feedparser>=6.0
+PyYAML>=6.0

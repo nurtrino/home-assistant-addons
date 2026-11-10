@@ -1,0 +1,48 @@
+name: Home News
+version: "1.0.0"
+slug: home_news
+description: Curated news for Chase's room. Collects feeds, ranks them with Claude, and publishes sensor.home_news for the TV welcome and dashboards.
+url: https://github.com/nurtrino/home-assistant-addons
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: application
+boot: auto
+homeassistant_api: true
+map:
+  - addon_config:rw
+options:
+  anthropic_api_key: ""
+  sorter_model: claude-haiku-4-5
+  editor_model: claude-sonnet-5-5
+  refresh_minutes: 30
+  active_start: "06:00"
+  active_end: "23:59"
+  timezone: America/Chicago
+  steam_app_ids:
+    - 1808500
+    - 1245620
+    - 814380
+    - 2358720
+    - 1850570
+    - 3280350
+    - 236390
+    - 3699590
+    - 2622380
+  notify_target: mobile_app_chases_iphone
+  mode_entity: input_select.chase_room_mode
+  editor_trigger_state: Idle
+schema:
+  anthropic_api_key: password?
+  sorter_model: str
+  editor_model: str
+  refresh_minutes: int(10,180)
+  active_start: str
+  active_end: str
+  timezone: str
+  steam_app_ids:
+    - int
+  notify_target: str?
+  mode_entity: str?
+  editor_trigger_state: str?

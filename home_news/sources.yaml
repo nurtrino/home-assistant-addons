@@ -1,0 +1,95 @@
+# Home News sources. Copied to /config/sources.yaml (the add-on's config folder) on first run;
+# edit that copy to change sources without rebuilding. weight: 1 (background) .. 3 (lead source).
+# type: rss (default) | reddit (multireddit, fetched slowly) | google (Google News search; title " - Source" split)
+# Steam game feeds are generated from the steam_app_ids option.
+
+sections:
+  war:
+    label: War & Defense
+    sources:
+      - {name: TWZ, url: "https://www.twz.com/feed", weight: 3}
+      - {name: USNI News, url: "https://news.usni.org/feed", weight: 3}
+      - {name: Breaking Defense, url: "https://breakingdefense.com/feed/", weight: 2}
+      - {name: Defense News, url: "https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml", weight: 2}
+      - {name: Defense One, url: "https://www.defenseone.com/rss/all/", weight: 2}
+      - {name: War on the Rocks, url: "https://warontherocks.com/feed/", weight: 1}
+      - {name: Military Times, url: "https://www.militarytimes.com/arc/outboundfeeds/rss/?outputType=xml", weight: 2}
+      - {name: Task & Purpose, url: "https://taskandpurpose.com/feed/", weight: 1}
+      - {name: Long War Journal, url: "https://www.longwarjournal.org/feed", weight: 2}
+      - {name: The Aviationist, url: "https://theaviationist.com/feed/", weight: 2}
+      - {name: gCaptain, url: "https://gcaptain.com/feed/", weight: 1}
+      - {name: Dept of War, url: "https://www.war.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=945&max=10", weight: 1}
+      - {name: World conflicts, type: google, url: "https://news.google.com/rss/search?q=airstrike+OR+%22missile+strike%22+OR+ceasefire+OR+%22troops%22+OR+%22naval%22+-football+-NFL+when:1d&hl=en-US&gl=US&ceid=US:en", weight: 2}
+
+  politics:
+    label: Politics
+    sources:
+      - {name: Politico, url: "https://rss.politico.com/politics-news.xml", weight: 2}
+      - {name: The Hill, url: "https://thehill.com/homenews/feed/", weight: 2}
+      - {name: Axios, url: "https://api.axios.com/feed/", weight: 2}
+      - {name: Fox News, url: "https://moxie.foxnews.com/google-publisher/politics.xml", weight: 2}
+      - {name: Washington Examiner, url: "https://www.washingtonexaminer.com/feed/", weight: 2}
+      - {name: NY Post, url: "https://nypost.com/politics/feed/", weight: 1}
+      - {name: Breitbart, url: "https://feeds.feedburner.com/breitbart", weight: 2}
+      - {name: Daily Wire, url: "https://www.dailywire.com/feeds/rss.xml", weight: 2}
+      - {name: ZeroHedge, url: "https://feeds.feedburner.com/zerohedge/feed", weight: 3}
+      - {name: SCOTUSblog, url: "https://www.scotusblog.com/feed/", weight: 2}
+      - {name: Silver Bulletin, url: "https://www.natesilver.net/feed", weight: 3}
+      - {name: Trump (Truth Social), url: "https://www.trumpstruth.org/feed", weight: 3}
+      - {name: Race calls, type: google, url: "https://news.google.com/rss/search?q=%22projected+winner%22+OR+%22wins+primary%22+OR+%22special+election%22+OR+%22wins+race%22+OR+%22concedes%22+when:2d&hl=en-US&gl=US&ceid=US:en", weight: 3}
+      - {name: New polls, type: google, url: "https://news.google.com/rss/search?q=%22new+poll%22+OR+%22latest+poll%22+OR+%22generic+ballot%22+OR+%22approval+rating%22+when:2d&hl=en-US&gl=US&ceid=US:en", weight: 3}
+
+  gaming:
+    label: Gaming
+    sources:
+      - {name: IGN, url: "https://feeds.feedburner.com/ign/all", weight: 2}
+      - {name: GameSpot, url: "https://www.gamespot.com/feeds/mashup/", weight: 2}
+      - {name: Game Informer, url: "https://www.gameinformer.com/rss.xml", weight: 2}
+      - {name: Polygon, url: "https://www.polygon.com/rss/index.xml", weight: 1}
+      - {name: Kotaku, url: "https://kotaku.com/rss", weight: 1}
+      - {name: PC Gamer, url: "https://www.pcgamer.com/rss/", weight: 2}
+      - {name: Eurogamer, url: "https://www.eurogamer.net/feed", weight: 1}
+      - {name: Rock Paper Shotgun, url: "https://www.rockpapershotgun.com/feed", weight: 1}
+      - {name: GamesRadar+, url: "https://www.gamesradar.com/rss/", weight: 1}
+      - {name: VGC, url: "https://www.videogameschronicle.com/feed/", weight: 2}
+      - {name: Insider Gaming, url: "https://insider-gaming.com/feed/", weight: 3}
+      - {name: Gematsu, url: "https://www.gematsu.com/feed", weight: 1}
+      - {name: Reddit gaming, type: reddit, url: "https://www.reddit.com/r/Games+pcgaming+GamingLeaksAndRumours+CrackWatch/top/.rss?t=day&limit=25", weight: 2}
+
+  ai:
+    label: AI
+    sources:
+      - {name: OpenAI, url: "https://openai.com/news/rss.xml", weight: 3}
+      - {name: Google DeepMind, url: "https://deepmind.google/blog/rss.xml", weight: 3}
+      - {name: Google AI, url: "https://blog.google/technology/ai/rss/", weight: 2}
+      - {name: Hugging Face, url: "https://huggingface.co/blog/feed.xml", weight: 2}
+      - {name: Anthropic, url: "https://raw.githubusercontent.com/taobojlen/anthropic-rss-feed/main/anthropic_news_rss.xml", weight: 3}
+      - {name: Anthropic news, type: google, url: "https://news.google.com/rss/search?q=Anthropic+OR+%22Claude+AI%22+when:2d&hl=en-US&gl=US&ceid=US:en", weight: 3}
+      - {name: New models, type: google, url: "https://news.google.com/rss/search?q=%22new+model%22+OR+%22releases%22+OpenAI+OR+Gemini+OR+xAI+OR+Grok+OR+Llama+OR+DeepSeek+OR+Qwen+when:1d&hl=en-US&gl=US&ceid=US:en", weight: 3}
+      - {name: AI drama, type: google, url: "https://news.google.com/rss/search?q=OpenAI+OR+Anthropic+OR+xAI+lawsuit+OR+resigns+OR+leaked+OR+controversy+OR+fired+when:2d&hl=en-US&gl=US&ceid=US:en", weight: 2}
+      - {name: HF Daily Papers, url: "https://papers.takara.ai/api/feed", weight: 2}
+      - {name: Simon Willison, url: "https://simonwillison.net/atom/everything/", weight: 2}
+      - {name: The Decoder, url: "https://the-decoder.com/feed/", weight: 2}
+      - {name: Import AI, url: "https://importai.substack.com/feed", weight: 2}
+      - {name: Interconnects, url: "https://www.interconnects.ai/feed", weight: 2}
+      - {name: Latent Space, url: "https://www.latent.space/feed", weight: 1}
+      - {name: SemiAnalysis, url: "https://newsletter.semianalysis.com/feed", weight: 2}
+      - {name: Zvi Mowshowitz, url: "https://thezvi.substack.com/feed", weight: 1}
+      - {name: Gary Marcus, url: "https://garymarcus.substack.com/feed", weight: 1}
+      - {name: The Verge AI, url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", weight: 2}
+      - {name: TechCrunch AI, url: "https://techcrunch.com/category/artificial-intelligence/feed/", weight: 2}
+      - {name: Ars Technica AI, url: "https://arstechnica.com/ai/feed/", weight: 2}
+      - {name: Hacker News, url: "https://hnrss.org/frontpage?points=100", weight: 1}
+      - {name: Reddit AI, type: reddit, url: "https://www.reddit.com/r/LocalLLaMA+singularity+ClaudeAI+OpenAI+MachineLearning/top/.rss?t=day&limit=25", weight: 2}
+
+  economy:
+    label: Economy
+    sources:
+      - {name: ZeroHedge, url: "https://feeds.feedburner.com/zerohedge/feed", weight: 3}
+      - {name: Fed press releases, url: "https://www.federalreserve.gov/feeds/press_all.xml", weight: 3}
+      - {name: BEA releases, url: "https://apps.bea.gov/rss/rss.xml", weight: 3}
+      - {name: WSJ Economy, url: "https://feeds.content.dowjones.io/public/rss/socialeconomyfeed", weight: 2}
+      - {name: MarketWatch, url: "https://feeds.content.dowjones.io/public/rss/mw_topstories", weight: 2}
+      - {name: CNBC Economy, url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258", weight: 2}
+      - {name: Wolf Street, url: "https://wolfstreet.com/feed/", weight: 1}
+      - {name: Data releases, type: google, url: "https://news.google.com/rss/search?q=CPI+OR+%22jobs+report%22+OR+%22nonfarm+payrolls%22+OR+PCE+OR+%22jobless+claims%22+OR+GDP+OR+%22retail+sales%22+when:1d&hl=en-US&gl=US&ceid=US:en", weight: 2}
