@@ -11,7 +11,7 @@ import aiohttp
 
 import econ
 from config import load_settings, load_sources
-from curate import SECTIONS, Curator
+from curate import SECTIONS, Curator, shorten
 from feeds import collect
 from ha import HomeAssistant
 from store import Store
@@ -22,6 +22,14 @@ log = logging.getLogger("home_news")
 LABELS = {"war": "War & Defense", "politics": "Politics", "gaming": "Gaming", "ai": "AI", "economy": "Economy"}
 EDITOR_EVERY_H = 4
 MIN_SCORE = 40
+
+
+def _headline(it) -> str:
+    """Stored headline, unless it's one older versions cut off mid-word at 90 characters."""
+    h = it.headline or it.title
+    if len(h) == 90 and len(it.title) > 90 and it.title.startswith(h):
+        return shorten(it.title)
+    return h
 
 
 class HomeNews:
@@ -116,7 +124,7 @@ class HomeNews:
             best = members[0]
             boost = min(8, 2 * (len({m.source for m in members}) - 1))  # coverage by several outlets
             out.append({
-                "id": best.id, "section": best.final_section, "headline": best.headline or best.title,
+                "id": best.id, "section": best.final_section, "headline": _headline(best),
                 "source": best.source, "link": best.link, "score": round(min(100, best.score + boost)),
                 "age_h": (now - best.published) / 3600, "time": datetime.fromtimestamp(best.published, self.s.tz).isoformat(),
                 "sources": len({m.source for m in members}),

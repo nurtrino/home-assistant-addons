@@ -1,5 +1,5 @@
 name: Home News
-version: "1.0.0"
+version: "1.0.1"
 slug: home_news
 description: Curated news for Chase's room. Collects feeds, ranks them with Claude, and publishes sensor.home_news for the TV welcome and dashboards.
 url: https://github.com/nurtrino/home-assistant-addons

@@ -109,6 +109,23 @@ def _text_json(response) -> dict:
     return json.loads(text)
 
 
+def shorten(title: str, limit: int = 90) -> str:
+    """Fits a headline in `limit` characters by ending at a natural break, never mid-word
+    (it's read aloud in the welcome)."""
+    title = title.strip()
+    if len(title) <= limit:
+        return title
+    for sep in ("! ", "? ", ": ", " — ", " – ", " - ", " | ", "; ", ", "):
+        i = title.rfind(sep, 0, limit)
+        if i >= 30:
+            return title[:i + (1 if sep[0] in "!?" else 0)].strip()
+    cut = title[:limit].rsplit(" ", 1)[0]
+    words = cut.split()
+    while words and words[-1].lower() in {"a", "an", "the", "and", "or", "of", "to", "in", "on", "for", "with", "will", "is", "as", "at", "by", "it", "that", "from", "but", "after", "over"}:
+        words.pop()
+    return " ".join(words).rstrip(",;:-–—")
+
+
 def _topic_key(title: str) -> str:
     words = re.findall(r"[a-z0-9]+", title.lower())
     stop = {"the", "a", "an", "to", "of", "in", "on", "for", "and", "is", "as", "at", "with", "by", "after", "new"}
@@ -175,7 +192,7 @@ class Curator:
         age_h = max(0.0, (time.time() - it.published) / 3600)
         score = min(95.0, it.weight * 22 + max(0.0, 30 - age_h * 1.5))
         section = "drop" if JUNK.search(it.title) else it.section
-        return {"id": it.id, "section": section, "score": round(score), "headline": it.title[:90],
+        return {"id": it.id, "section": section, "score": round(score), "headline": shorten(it.title),
                 "topic": _topic_key(it.title)}
 
     # ---------- top three (Sonnet) ----------
